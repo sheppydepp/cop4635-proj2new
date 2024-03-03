@@ -30,7 +30,7 @@ int main(int argc, char const *argv[]) {
         memset(portToConnect, '\0' ,sizeof(portToConnect));
         memset(&serverAddress, '\0', sizeof(serverAddress));
 
-        // Obtain host name or "quit" to close out of client
+        // Retrieve host name or "quit" to exit client
         std::cout << "Enter Host name or quit to quit: ";
         std::cin.getline(hostToConnect, 16);
         if(strncmp(quitArray, hostToConnect, 4) == 0) {
@@ -39,14 +39,14 @@ int main(int argc, char const *argv[]) {
         std::cout << "Enter Port: ";
         std::cin.getline(portToConnect, 256);
 
-        // Obtains name of file you're looking for in format of of "/testPresence.html" or "/imp.jpg"
-        // converts it to string to make it easier to surround with "GET" an "HTTP/1.1" for sending to server.
+        // retrieves name of file the client is trying to access in format of of "/testPresence.html" or "/imp.jpg"
+        // converts it to string to make it able to be prefaced with "GET" and concluded with "HTTP/1.1" for sending to server.
         std::cout << "Enter the .html file you're trying to access, starting with '/' and ending in .html: ";
         std::cin.getline(fileToRetrieve, 256);
         fileToRetrieve[strlen(fileToRetrieve)-1] = '\0';
         fileToObtain = fileToRetrieve;
 
-        // Construct the first line a client sends to server for obtaining a file, then makes the connection
+        // Creates the initial line a client sends to server for retrieving a file, and makes the connection
         std::ostringstream messageToServer;
         messageToServer << "GET " << fileToObtain << " HTTP/1.1\r\n";
         messageSendToServer = messageToServer.str();
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[]) {
             exit(1);
         }
 
-        // Data put into clientBuffer but valueRead holds number to see if it could read or not.
+        // Data placed into clientBuffer, and valueRead holds the value to see if it can be read.
         valueRead = read(userSocket, clientBuffer, 1024);
         if(valueRead > 0){
             std::cout << clientBuffer << std::endl;
