@@ -24,9 +24,13 @@ The server terminal will show the GET request from the client along with the HTT
 
 === Accomplishments === 
 The server WSL terminal sucessfuly shows any file requests being made by the client WSL terminal
-showing interaction between the client and server.
+showing interaction between the client and server. 
+The client WSL terminal sucessfuly shows file content from the server showing interaction between
+the client and server. 
 
 === Other Notes ===
 The Port Number specified in our code is 60010.
+We had a slight issue with our connection checking method. The client will still try to make a request
+if the server is not running instead of terminating. 
 
 
